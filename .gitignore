@@ -1,0 +1,56 @@
+
+GoogleDriveLink/ServiceAccountKey.json
+GoogleDriveLink/ParentFolderID.txt
+
+# Build Folders
+bin/
+obj/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Rider settings
+.idea/
+
+# Visual Studio Code settings
+.vscode/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# DotNet specific files
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# IIS Express settings
+.vs/
+
+# NuGet packages
+packages/
+# Exclude NuGet package cache in global packages folder
+.nuget/packages/
+
+# Test results
+TestResults/
+
+# Resharper files
+*.DotSettings
+*.DotSettings.user
+
+# Local environment variables
+.env
