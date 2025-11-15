@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: macos-latest
 
     strategy:
       matrix:
@@ -28,10 +28,10 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Restore
-      run: dotnet restore $env:Solution_Name -r win-x64
+      run: dotnet restore $env:Solution_Name -r osx-x64
 
     - name: Build
-      run: dotnet publish $env:Project_Path -c $env:Configuration -r win-x64 --self-contained true -p:PublishSingleFile=true --no-restore
+      run: dotnet publish $env:Project_Path -c $env:Configuration -r osx-x64 --self-contained true -p:PublishSingleFile=true --no-restore
       env:
         Configuration: ${{ matrix.configuration }}
 
@@ -57,6 +57,6 @@ jobs:
       with:
         tag_name: ${{ steps.create_tag.outputs.tag }}
         files: |
-          GoogleDriveLink/bin/Release/net8.0-windows/win-x64/publish/*.exe
+          GoogleDriveLink/bin/Release/net8.0/osx-x64/publish/*
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
