@@ -31,7 +31,7 @@ jobs:
       run: dotnet restore $env:Solution_Name -r win-x64
 
     - name: Build
-      run: dotnet publish $env:Project_Path -c $env:Configuration -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:_SuppressWinFormsTrimError=true --no-restore
+      run: dotnet publish $env:Project_Path -c $env:Configuration -r win-x64 --self-contained true -p:PublishSingleFile=true --no-restore
       env:
         Configuration: ${{ matrix.configuration }}
 
