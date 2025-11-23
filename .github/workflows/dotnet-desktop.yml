@@ -35,15 +35,24 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
-    - name: Zip publish output
+    - name: Zip only required files
+      id: zip
       run: |
         $publishDir = "GoogleDriveLink/bin/Release/net8.0-windows/win-x64/publish"
+
+        $filesToZip = @(
+          "$publishDir\GoogleDriveLink.exe",
+          "$publishDir\ParentFolderID.example.txt",
+          "$publishDir\ServiceAccountKey.example.json"
+        )
+
         $zipPath = "GoogleDriveLink-${{ steps.create_tag.outputs.tag }}-win-x64.zip"
         if (Test-Path $zipPath) { Remove-Item $zipPath }
-        Compress-Archive -Path "$publishDir\*" -DestinationPath $zipPath
+
+        Compress-Archive -Path $filesToZip -DestinationPath $zipPath
+
         echo "zip=$zipPath" >> $env:GITHUB_OUTPUT
       shell: pwsh
-      id: zip
       
     - name: Create Release Tag
       id: create_tag
