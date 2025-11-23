@@ -58,5 +58,6 @@ jobs:
         tag_name: ${{ steps.create_tag.outputs.tag }}
         files: |
           GoogleDriveLink/bin/Release/net8.0-windows/win-x64/publish/*.exe
+          GoogleDriveLink/bin/Release/net8.0-windows/win-x64/publish/*.txt
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
