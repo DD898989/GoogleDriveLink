@@ -35,6 +35,16 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
+    - name: Zip publish output
+      run: |
+        $publishDir = "GoogleDriveLink/bin/Release/net8.0-windows/win-x64/publish"
+        $zipPath = "GoogleDriveLink-${{ steps.create_tag.outputs.tag }}-win-x64.zip"
+        if (Test-Path $zipPath) { Remove-Item $zipPath }
+        Compress-Archive -Path "$publishDir\*" -DestinationPath $zipPath
+        echo "zip=$zipPath" >> $env:GITHUB_OUTPUT
+      shell: pwsh
+      id: zip
+      
     - name: Create Release Tag
       id: create_tag
       run: |
@@ -52,13 +62,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Upload Release Asset
+    - name: Upload Release Asset (zip only)
       uses: softprops/action-gh-release@v2
       with:
         tag_name: ${{ steps.create_tag.outputs.tag }}
         files: |
-          GoogleDriveLink/bin/Release/net8.0-windows/win-x64/publish/*.exe
-          GoogleDriveLink/bin/Release/net8.0-windows/win-x64/publish/*.txt
-          GoogleDriveLink/bin/Release/net8.0-windows/win-x64/publish/*.json
+          ${{ steps.zip.outputs.zip }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
