@@ -14,7 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ParentFolderID.example.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="ParentFolderID.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ServiceAccountKey.example.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="ServiceAccountKey.json">
